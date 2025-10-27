@@ -48,16 +48,39 @@ CODE SEGMENT
         ADD DL, '0'
         INT 21H
 
-        MOV AH, 4CH
-        INT 21H
+        HLT
     
     DIV_BY_ZERO:
         MOV AH, 02
         MOV DL, 'Z'
         INT 21H
 
-        MOV AH, 4CH
-        INT 21H
+        HLT
         
 CODE ENDS
 END START
+
+COMMENT @@@
+8086 TRAINER KIT
+MEMORY:
+0800   08
+0801   05
+0802   ??
+0803   ??
+
+
+CODE:
+0300: MOV CL, 00H
+0302: MOV AL, [0800]
+0304: MOV BL, [0801]
+0306: CMP BL, 00H
+0308: JE 0317
+030A: CMP AL, BL
+030C: JBE [0313]
+030E: SUB AL, BL
+0310: INC CL
+0311: JMP 030A
+0313: MOV [0803], AL
+0315: MOV [0802], CL
+0317: HLT
+@@@

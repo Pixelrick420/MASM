@@ -199,31 +199,40 @@ class Assembler:
 
 
 assembly = '''DATA SEGMENT
-    array DB 05H, 04H, 00H, 01H, 06H, 07H, 02H, 08H, 09H, 03H
-    n DB 0AH
+	a 	DB 04H
+	b 	DB 08H
+	lcm 	DB ?
+	hcf 	DB ?
 DATA ENDS
 
 CODE SEGMENT
-        MOV SI, OFFSET array
-        MOV DI, OFFSET array
-        MOV CL, n
-        MOV CH, 00H
-        ADD DI, CX
-        DEC DI
+		MOV AL, a
+		MOV BL, b 			
 
-    _LOOP:
-        CMP DI, SI
-        JBE STOP
+	BACK:
+		MOV AH, 00H
+		ADD BL, 00H  			
+		JNZ GET_HCF
+		MOV hcf, AL
+		JMP FINISH
 
-        MOV AL, [SI]
-        XCHG AL, [DI]
-        MOV [SI], AL
+	GET_HCF:
+		DIV BL
+		MOV AL, BL
+		MOV BL, AH
+		JMP BACK
 
-        INC SI
-        DEC DI
-        JMP _LOOP
+	FINISH:
+		MOV AL, a
+		MOV BL, b
+		MUL BL
+		MOV BL, hcf
+		DIV BL
+		MOV lcm, AL
+        HLT
 
-        HLT'''
+CODE ENDS
+END START'''
 
 
 assembler = Assembler()
