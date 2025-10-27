@@ -1,3 +1,7 @@
+COMMENT @@@
+Question : Given 2 arrays arr1, arr2 of size n in memory, for each index i such that 0 <= i < n, swap arr1[i] and arr2[i] if they are both even
+@@@
+
 ASSUME DS:DATA, CS:CODE, SS:STACK
 
 STACK SEGMENT PARA STACK 'STACK'
@@ -78,6 +82,7 @@ END START
 
 
 COMMENT @@@
+8086 TRAINER KIT
 MEMORY:
 0800   04H
 0801   03H 
@@ -113,7 +118,5 @@ CODE:
 0321:    INC DI
 0322:    DEC CL
 0324:    JNZ 030AH              
-0326:    MOV AH, 4CH
-0328:    INT 21H
-
+0326:    HLT
 @@@

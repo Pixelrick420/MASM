@@ -12,12 +12,12 @@ DATA ENDS
 CODE SEGMENT 
     BISECT_LEFT:
         MOV BH, DL
-        DEC BH              ; right = mid - 1
+        DEC BH              
         JMP _LOOP
 
     BISECT_RIGHT:
         MOV BL, DL
-        INC BL              ; left = mid + 1
+        INC BL              
         JMP _LOOP
 
     START:
@@ -27,18 +27,18 @@ CODE SEGMENT
         MOV SS, AX
         MOV SP, 128
 
-        MOV BL, 00H         ; left
-        MOV BH, n           ; right
-        MOV CL, n           ; n for comparing
+        MOV BL, 00H         
+        MOV BH, n           
+        MOV CL, n           
 
     _LOOP:
         CMP BH, BL
         JB NOT_FOUND
         MOV AL, BL
         ADD AL, BH 
-        SHR AL, 1           ; mid
-        MOV DL, AL          ; save copy of mid before squaring
-        MUL AL              ; square of mid
+        SHR AL, 1           
+        MOV DL, AL          
+        MUL AL              
 
         CMP AL, CL
         JB BISECT_RIGHT
@@ -63,3 +63,37 @@ CODE SEGMENT
         INT 21H
 CODE ENDS
 END START
+
+COMMENT @@@
+8086 TRAINER KIT
+MEMORY:
+0800   09
+0801   ??
+
+
+CODE:
+0300: MOV BL, 00H 
+0302: MOV BH, [0800] 
+0304: MOV CL, [0800] 
+0306: CMP BH, BL
+0308: JB [0320]
+030A: MOV AL, BL
+030C: ADD AL, BH
+030E: SHR AL, 1 
+0310: MOV DL, AL 
+0312: MUL AL 
+0314: CMP AL, CL
+0316: JB [0329]
+0318: JE 031C
+031A: JMP 0324
+031C: MOV [0801], DL
+031E: HLT
+0320: MOV [0801], 00H
+0322: HLT
+0324: MOV BH, DL
+0326: DEC BH 
+0327: JMP 0306
+0329: MOV BL, DL
+032B: INC BL 
+032C: JMP 0306
+@@@
