@@ -1,0 +1,52 @@
+ASSUME CS:CODE, DS:DATA
+DATA SEGMENT
+	a 	DB 04H
+	b 	DB 08H
+	lcm 	DB ?
+	hcf 	DB ?
+DATA ENDS
+
+CODE SEGMENT
+	PRINT:
+		MOV AH, 2
+		MOV DL, lcm
+		ADD DL, 30H
+		INT 21H
+		MOV DL, hcf
+		ADD DL, 30H
+		INT 21H
+		RET
+
+	START:
+		MOV AX, DATA
+		MOV DS, AX
+
+		MOV AL, a
+		MOV BL, b 			
+
+	BACK:
+		MOV AH, 0H
+		ADD BL, 0H  			
+		JNZ GET_HCF
+		MOV hcf, BL
+		JMP FINISH
+
+	GET_HCF:
+		DIV BL
+		MOV AL, BL
+		MOV BL, AH
+		JMP BACK
+
+	FINISH:
+		MOV AL, a
+		MOV BL, b
+		MUL BL
+		MOV BL, hcf
+		DIV BL
+		MOV lcm, AL
+		CALL PRINT
+		MOV AH, 4CH
+		INT 21H
+
+CODE ENDS
+END START
