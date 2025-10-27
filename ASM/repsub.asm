@@ -47,15 +47,15 @@ CODE SEGMENT
         MOV DL, CL
         ADD DL, '0'
         INT 21H
-
-        HLT
+        MOV AH, 4CH
+        INT 21H
     
     DIV_BY_ZERO:
         MOV AH, 02
         MOV DL, 'Z'
         INT 21H
-
-        HLT
+        MOV AH, 4CH
+        INT 21H
         
 CODE ENDS
 END START
@@ -63,6 +63,7 @@ END START
 COMMENT @@@
 8086 TRAINER KIT
 MEMORY:
+
 0800   08
 0801   05
 0802   ??

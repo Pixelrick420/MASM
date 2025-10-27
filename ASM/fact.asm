@@ -8,7 +8,7 @@ STACK SEGMENT PARA STACK 'STACK'
 STACK ENDS
 
 DATA SEGMENT
-    n DB 05H
+    n DB 02H
     factorial DB ?
 DATA ENDS
 
@@ -32,7 +32,6 @@ CODE SEGMENT
     
     STOP:
         MOV factorial, AL
-        PUSH AX
         MOV AH, 4CH
         INT 21H
 CODE ENDS
@@ -54,6 +53,5 @@ CODE:
 030A: DEC CL
 030B: JMP 0304
 030D: MOV [0801], AL
-030F: PUSH AX
-0310: HLT
+030F: HLT
 @@@
