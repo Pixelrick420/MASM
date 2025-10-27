@@ -25,10 +25,10 @@ CODE SEGMENT
 		MOV BL, b 			
 
 	BACK:
-		MOV AH, 0H
-		ADD BL, 0H  			
+		MOV AH, 00H
+		ADD BL, 00H  			
 		JNZ GET_HCF
-		MOV hcf, BL
+		MOV hcf, AL
 		JMP FINISH
 
 	GET_HCF:
