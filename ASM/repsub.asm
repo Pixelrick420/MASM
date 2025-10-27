@@ -1,3 +1,5 @@
+; Question : Given 8 bit numbers divident and divisor find quotient and remainder with repeated subtraction algorithm
+
 ASSUME DS:DATA, CS:CODE, SS:STACK
 
 STACK SEGMENT PARA STACK 'STACK'

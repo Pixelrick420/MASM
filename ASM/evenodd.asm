@@ -1,3 +1,5 @@
+; Question : Given an array arr of length n, count the number of odd and even numbers in arr
+
 ASSUME CS:CODE, DS:DATA
 DATA SEGMENT
     arr             DB 04H, 06H, 03H, 35H, 21H, 12H, 25H, 30H, 67H, 9BH

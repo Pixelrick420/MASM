@@ -1,3 +1,5 @@
+; Boiler plate for any MASM program
+
 ASSUME DS:DATA, CS:CODE, SS:STACK
 
 STACK SEGMENT PARA STACK 'STACK'

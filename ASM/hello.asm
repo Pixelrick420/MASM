@@ -1,3 +1,4 @@
+; Question : Given an integer n, find the factorial of n.
 ASSUME CS:CODE, DS:DATA, SS:STACK
 
 STACK SEGMENT PARA STACK 'STACK'

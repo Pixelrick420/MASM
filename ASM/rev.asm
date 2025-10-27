@@ -1,3 +1,5 @@
+; Question : Given an array arr of length n, reverse it in the same memory location
+
 ASSUME CS: CODE, DS: DATA, SS: STACK
 
 STACK SEGMENT PARA STACK 'STACK'

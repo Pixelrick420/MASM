@@ -1,6 +1,5 @@
-COMMENT @@@
-Question : Given an integer n, find the factorial of n.
-@@@
+; Question : Given an integer n, find the factorial of n.
+
 ASSUME DS:DATA, CS:CODE, SS:STACK
 
 STACK SEGMENT PARA STACK 'STACK'

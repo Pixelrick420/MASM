@@ -1,3 +1,5 @@
+; Question : Given 8 bit numbers a and b find their LCM and HCF
+
 ASSUME CS:CODE, DS:DATA
 DATA SEGMENT
 	a 	DB 04H

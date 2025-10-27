@@ -1,4 +1,3 @@
-
 ; Question : Given 2 arrays arr1, arr2 of size n in memory, for each index i such that 0 <= i < n, swap arr1[i] and arr2[i] if they are both even
 
 ASSUME DS:DATA, CS:CODE, SS:STACK
