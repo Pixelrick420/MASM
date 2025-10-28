@@ -200,37 +200,34 @@ class Assembler:
 
 assembly = '''
 DATA SEGMENT
-    s DB 04H, 06H, 03H, 34H, 12H, 35H, 03H, 06H, 04H
-    n DB 09H
-    isPalindrome DB ?
+    arr  DB 04H, 03H, 03H, 03H, 02H, 01H, 02H, 03H, 01H, 01H
+    n    DB 0AH
+    elem DB 04H
+    freq DB ?
 DATA ENDS
 
 CODE SEGMENT 
     START:
-        MOV SI, OFFSET s
-        MOV AX, SI 
-        ADD AL, n 
-        DEC AX            
-        MOV DI, AX
+        MOV SI, OFFSET arr
+        MOV BL, elem
+        MOV CL, n
+        MOV DL, 00H
 
     _LOOP:
-        CMP DI, SI
-        JBE PALINDROME
         MOV AL, [SI]
-        MOV BL, [DI]
         CMP AL, BL
-        JNZ NOT_PALINDROME
+        JE INC_COUNT
+    BACK:
         INC SI
-        DEC DI
-        JMP _LOOP
-    
-    PALINDROME:
-        MOV isPalindrome, 01H
+        DEC CL
+        JNZ _LOOP
+
+        MOV freq, DL
         HLT
     
-    NOT_PALINDROME:
-        MOV isPalindrome, 00H
-        HLT
+    INC_COUNT:
+        INC DL
+        JMP BACK
 '''
 
 
