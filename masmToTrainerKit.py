@@ -198,41 +198,40 @@ class Assembler:
 
 
 
-assembly = '''DATA SEGMENT
-	a 	DB 04H
-	b 	DB 08H
-	lcm 	DB ?
-	hcf 	DB ?
+assembly = '''
+DATA SEGMENT
+    s DB 04H, 06H, 03H, 34H, 12H, 35H, 03H, 06H, 04H
+    n DB 09H
+    isPalindrome DB ?
 DATA ENDS
 
-CODE SEGMENT
-		MOV AL, a
-		MOV BL, b 			
+CODE SEGMENT 
+    START:
+        MOV SI, OFFSET s
+        MOV AX, SI 
+        ADD AL, n 
+        DEC AX            
+        MOV DI, AX
 
-	BACK:
-		MOV AH, 00H
-		ADD BL, 00H  			
-		JNZ GET_HCF
-		MOV hcf, AL
-		JMP FINISH
-
-	GET_HCF:
-		DIV BL
-		MOV AL, BL
-		MOV BL, AH
-		JMP BACK
-
-	FINISH:
-		MOV AL, a
-		MOV BL, b
-		MUL BL
-		MOV BL, hcf
-		DIV BL
-		MOV lcm, AL
+    _LOOP:
+        CMP DI, SI
+        JBE PALINDROME
+        MOV AL, [SI]
+        MOV BL, [DI]
+        CMP AL, BL
+        JNZ NOT_PALINDROME
+        INC SI
+        DEC DI
+        JMP _LOOP
+    
+    PALINDROME:
+        MOV isPalindrome, 01H
         HLT
-
-CODE ENDS
-END START'''
+    
+    NOT_PALINDROME:
+        MOV isPalindrome, 00H
+        HLT
+'''
 
 
 assembler = Assembler()
